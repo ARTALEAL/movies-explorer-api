@@ -16,6 +16,7 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : MONGO_URL_DEV, {
 });
 
 const app = express();
+app.use(helmet());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
