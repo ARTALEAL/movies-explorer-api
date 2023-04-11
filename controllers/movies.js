@@ -53,3 +53,29 @@ function addMovie(req, res, next) {
       }
     });
 }
+
+function deleteMovie(req, res, next) {
+  const { movieId } = req.params;
+  const userId = req.user._id;
+  Movie
+    .findById(movieId)
+    .then((movie) => {
+      if (!movie) {
+        throw new NotFoundError('Фильм не найден');
+      }
+      if (movie.owner.valueOf() !== userId) {
+        throw new ForbiddenError('Нельзя удалить чужой фильм!');
+      }
+      Movie
+        .findByIdAndRemove(movieId)
+        .then((deletedMovie) => res.send(deletedMovie))
+        .catch(next);
+    })
+    .catch(next);
+}
+
+module.exports = {
+  getMovies,
+  addMovie,
+  deleteMovie,
+};
