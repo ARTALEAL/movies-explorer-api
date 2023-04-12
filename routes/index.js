@@ -5,12 +5,14 @@ const {
   singUp,
   signIn,
 } = require('../middlewares/validations');
+const auth = require('../middlewares/auth');
 
 // open Routes
 router.post('/signup', singUp, createUser);
 router.post('/signin', signIn, login);
 
 // Private routes
+router.use(auth);
 router.use('/', require('./users'));
 router.use('/', require('./movies'));
 
