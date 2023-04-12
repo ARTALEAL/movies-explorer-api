@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
 
     name: {
       type: String,
-      default: 'Жак-Ив Кусто',
+      required: true,
       validate: {
         validator: ({ length }) => length >= 2 && length <= 30,
         message: 'Имя пользователя должно быть длиной от 2 до 30 символов',
