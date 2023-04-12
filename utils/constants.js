@@ -2,7 +2,7 @@ const MONGO_URL_DEV = 'mongodb://127.0.0.1:27017/bitfilmsdb';
 const JWT_SECRET_DEV = 'secret-key';
 
 const {
-  PORT = 3000,
+  PORT = 3001,
   NODE_ENV,
   JWT_SECRET,
   MONGO_URL,
