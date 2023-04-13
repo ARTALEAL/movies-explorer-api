@@ -12,6 +12,7 @@ const router = require('./routes');
 const cors = require('./middlewares/cors');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/rateLimiter');
 
 mongoose.set('strictQuery', true);
 
@@ -27,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors);
+app.use(limiter);
 app.use(requestLogger);
 
 app.use(router);
