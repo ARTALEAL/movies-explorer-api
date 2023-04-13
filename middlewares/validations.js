@@ -31,7 +31,7 @@ const createFilmValidation = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    movieId: Joi.number().required,
+    movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     image: Joi.string().custom((value) => {
@@ -55,9 +55,16 @@ const createFilmValidation = celebrate({
   }),
 });
 
+const filmIdValidation = celebrate({
+  params: Joi.object().keys({
+    movieId: Joi.string().required().length(24).hex(),
+  }),
+});
+
 module.exports = {
   singUp,
   signIn,
   updateUserValidation,
   createFilmValidation,
+  filmIdValidation,
 };
